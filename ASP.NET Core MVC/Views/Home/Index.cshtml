@@ -1,0 +1,38 @@
+﻿@model List<Term>
+@{
+    ViewBag.Title = "ASP.NET Core MVC";
+}
+
+<h2>Term List</h2>
+<a asp-controller="Term" asp-action="Add">Add New Term</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Term name</th>
+            <th>Page</th>
+            <th>Chapter</th>
+            <th>Stage</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var term in Model)
+        {
+            <tr>
+                <td>@term.TermName</td>
+                <td>@term.Page</td>
+                <td>@term.Chapter.Name</td>
+                <td>@term.Stage</td>
+                <td>
+                    <a asp-controller="Term" asp-action="Edit"
+                       asp-route-id="@term.TermId"
+                       asp-route-slug="@term.Slug">Edit</a>
+                    <a asp-controller="Term" asp-action="Delete"
+                       asp-route-id="@term.TermId"
+                       asp-route-slug="@term.Slug">Delete</a>
+                       
+                </td>
+            </tr>
+        }
+    </tbody>
+    </table>

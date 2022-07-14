@@ -1,0 +1,43 @@
+﻿@model Term
+
+@{
+    string title = ViewBag.Action + " Term";
+    ViewBag.Title = title;
+}
+
+<h2>@title</h2>
+
+<form asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="TermName">Term name</label>
+        <input asp-for="TermName" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Page">Page</label>
+        <input asp-for="Page" class="form-control">
+    </div>
+
+     <div class="form-group">
+        <label asp-for="ChapterId">Chapter</label>
+        <select asp-for="ChapterId" class="form-control">
+            <option value="">select a chapter</option> 
+            @foreach (Chapter g in ViewBag.Chapters)
+            {
+                <option value="@g.ChapterId">@g.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Stage">Stage</label>
+        <input asp-for="Stage" class="form-control">
+    </div>
+
+    <input type="hidden" asp-for="TermId" />
+
+    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>
